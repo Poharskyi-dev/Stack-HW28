@@ -1,5 +1,7 @@
 package com.gmail.box.avpog;
 
+import com.gmail.box.avpog.Utils.Exceptions.IsEmptyException;
+import com.gmail.box.avpog.Utils.Exceptions.IsFullException;
 import com.gmail.box.avpog.Utils.Stack;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +14,7 @@ import org.junit.jupiter.api.Assertions;
 public class AppTest {
 
     @Test
-    void testStackFullnes() {
+    void testStackFullnes() throws IsFullException, IsEmptyException {
         //given
         Stack stack = new Stack(5);
         stack.addElementToStack(10);
@@ -40,15 +42,39 @@ public class AppTest {
 
     }
 
-    // Як вiдтестувати output String з методу який повинен видавати int?
     @Test
-    void testStackMessage() {
+    void testStackMessage() throws IsEmptyException {
         // given
         Stack stack = new Stack(999);
         // when
         Integer whenRead = stack.readHead();
         // then
         Assertions.assertEquals(null, whenRead);
+    }
+
+    @Test // не спрацює
+    void isEmptyExceptionWork() throws IsEmptyException {
+        // given
+        Stack stack = new Stack(999);
+        // when
+        // then
+        Assertions.assertThrows(IsEmptyException.class, () -> {
+            stack.readHead();
+        });
+    }
+
+    @Test // не спрацює
+    void isFullExceptionWork() throws IsFullException {
+        // given
+        Stack stack = new Stack(3);
+        // when
+        stack.addElementToStack(10);
+        stack.addElementToStack(20);
+        stack.addElementToStack(30);
+        // then
+        Assertions.assertThrows(IsFullException.class, () -> {
+            stack.addElementToStack(5);
+        });
     }
 
 }

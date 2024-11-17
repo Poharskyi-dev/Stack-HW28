@@ -1,31 +1,40 @@
 package com.gmail.box.avpog.Utils;
 
+import com.gmail.box.avpog.Utils.Exceptions.IsEmptyException;
+import com.gmail.box.avpog.Utils.Exceptions.IsFullException;
+
 public class Stack {
     private int maxSize;
     private int[] stackArray;
     private int head;
 
-    public Stack (int max) {
+    public Stack(int max) {
         this.maxSize = max;
         this.stackArray = new int[maxSize];
         this.head = -1;
     }
 
-    public void addElementToStack(int element) {
+    public void addElementToStack(int element) throws IsFullException {
         if (isFull()) {
-            System.out.println("Stack is full! Can not add element!");
+            throw new IsFullException("Stack is full!");
         } else stackArray[++head] = element;
 
     }
+
     public int deleteElementFromStack() {
         return stackArray[head--];
     }
 
-    public Integer readHead() {
-        if (isEmpty()) {
+    // чи це ок? наскiльки я зрозумiв, тест цього throw зробити майже неможливо
+    public Integer readHead() throws IsEmptyException {
+        try {
+            if (isEmpty()) {
+                throw new IsEmptyException("Stack is empty!");
+            }
+            return stackArray[head];
+        } catch (IsEmptyException e) {
             return null;
         }
-        return stackArray[head];
     }
 
     public boolean isEmpty() {
@@ -35,7 +44,6 @@ public class Stack {
     public boolean isFull() {
         return (head == maxSize - 1);
     }
-
 
 
 }
