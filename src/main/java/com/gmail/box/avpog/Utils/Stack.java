@@ -7,8 +7,8 @@ public class Stack {
 
     public Stack (int max) {
         this.maxSize = max;
-        stackArray = new int[maxSize];
-        head = -1;
+        this.stackArray = new int[maxSize];
+        this.head = -1;
     }
 
     public void addElementToStack(int element) {
@@ -21,9 +21,9 @@ public class Stack {
         return stackArray[head--];
     }
 
-    public int readHead() {
+    public Integer readHead() {
         if (isEmpty()) {
-            System.out.println("Stack is empty! Can not return element!");
+            return null;
         }
         return stackArray[head];
     }

@@ -43,7 +43,12 @@ public class AppTest {
     // Як вiдтестувати output String з методу який повинен видавати int?
     @Test
     void testStackMessage() {
+        // given
         Stack stack = new Stack(999);
-        stack.readHead();
+        // when
+        Integer whenRead = stack.readHead();
+        // then
+        Assertions.assertEquals(null, whenRead);
     }
+
 }
