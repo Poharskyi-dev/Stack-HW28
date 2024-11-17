@@ -22,9 +22,9 @@ public class AppTest {
         stack.addElementToStack(50);
         stack.addElementToStack(60);
         //when
-        int expectedHEad = stack.readHead();
+        int expectedHead = stack.readHead();
         //then
-        Assertions.assertEquals(50, expectedHEad);
+        Assertions.assertEquals(50, expectedHead);
 
     }
 
