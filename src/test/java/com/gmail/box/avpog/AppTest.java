@@ -8,7 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 
-;
+;import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class AppTest {
@@ -77,4 +80,29 @@ public class AppTest {
         });
     }
 
+    @Test // не спрацює
+    void isOptionalEmpty() {
+        // given
+        Stack stack = new Stack(3);
+        // when
+        stack.addElementToStack(10);
+        stack.addElementToStack(20);
+        stack.addElementToStack(30);
+        Optional <String> result = stack.getNumber(3);
+        // then
+        assertFalse(result.isPresent());
+    }
+
+    @Test // не спрацює
+    void isOptionalReturn() throws IsFullException {
+        // given
+        Stack stack = new Stack(3);
+        // when
+        stack.addElementToStack(10);
+        stack.addElementToStack(20);
+        stack.addElementToStack(30);
+        Optional <String> result = stack.getNumber(10);
+        // then
+        assertTrue(result.isPresent());
+    }
 }

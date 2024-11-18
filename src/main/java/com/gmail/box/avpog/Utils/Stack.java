@@ -3,6 +3,9 @@ package com.gmail.box.avpog.Utils;
 import com.gmail.box.avpog.Utils.Exceptions.IsEmptyException;
 import com.gmail.box.avpog.Utils.Exceptions.IsFullException;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public class Stack {
     private int maxSize;
     private int[] stackArray;
@@ -45,5 +48,19 @@ public class Stack {
         return (head == maxSize - 1);
     }
 
+    public Optional<String> getNumber(int number) {
+        for (int i = 0; i < stackArray.length; i++) {
+            if (number == stackArray[i]) {
+                return Optional.of(String.valueOf(stackArray[i]));
+            }
+        }
+        return Optional.empty();
+    }
+
+    public String toString() {
+        return Arrays.toString(Arrays.copyOfRange(stackArray, 0, head + 1));
+    }
 
 }
+
+
