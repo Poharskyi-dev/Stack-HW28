@@ -28,17 +28,12 @@ public class Stack {
         return stackArray[head--];
     }
 
-    // чи це ок? наскiльки я зрозумiв, тест цього throw зробити майже неможливо
     public Integer readHead() throws IsEmptyException {
-        try {
-            if (isEmpty()) {
-                throw new IsEmptyException("Stack is empty!");
-            }
-            return stackArray[head];
-        } catch (IsEmptyException e) {
-            return null;
-        }
+        if (isEmpty()) {
+            throw new IsEmptyException("Stack is empty!");
+        } else return stackArray[head];
     }
+
 
     public boolean isEmpty() {
         return (head == -1);
@@ -48,10 +43,10 @@ public class Stack {
         return (head == maxSize - 1);
     }
 
-    public Optional<String> getNumber(int number) {
+    public Optional<Integer> getNumber(int number) {
         for (int i = 0; i < stackArray.length; i++) {
             if (number == stackArray[i]) {
-                return Optional.of(String.valueOf(stackArray[i]));
+                return Optional.of(stackArray[i]);
             }
         }
         return Optional.empty();

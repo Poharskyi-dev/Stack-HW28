@@ -3,7 +3,6 @@ package com.gmail.box.avpog;
 import com.gmail.box.avpog.Utils.Exceptions.IsEmptyException;
 import com.gmail.box.avpog.Utils.Exceptions.IsFullException;
 import com.gmail.box.avpog.Utils.Stack;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -55,7 +54,7 @@ public class AppTest {
         Assertions.assertEquals(null, whenRead);
     }
 
-    @Test // не спрацює
+    @Test
     void isEmptyExceptionWork() throws IsEmptyException {
         // given
         Stack stack = new Stack(999);
@@ -66,7 +65,7 @@ public class AppTest {
         });
     }
 
-    @Test // не спрацює
+    @Test
     void isFullExceptionWork() throws IsFullException {
         // given
         Stack stack = new Stack(3);
@@ -80,20 +79,20 @@ public class AppTest {
         });
     }
 
-    @Test // не спрацює
-    void isOptionalEmpty() {
+    @Test
+    void isOptionalEmpty() throws IsFullException {
         // given
         Stack stack = new Stack(3);
         // when
         stack.addElementToStack(10);
         stack.addElementToStack(20);
         stack.addElementToStack(30);
-        Optional <String> result = stack.getNumber(3);
+        Optional <Integer> result = stack.getNumber(3);
         // then
         assertFalse(result.isPresent());
     }
 
-    @Test // не спрацює
+    @Test
     void isOptionalReturn() throws IsFullException {
         // given
         Stack stack = new Stack(3);
@@ -101,7 +100,7 @@ public class AppTest {
         stack.addElementToStack(10);
         stack.addElementToStack(20);
         stack.addElementToStack(30);
-        Optional <String> result = stack.getNumber(10);
+        Optional <Integer> result = stack.getNumber(10);
         // then
         assertTrue(result.isPresent());
     }

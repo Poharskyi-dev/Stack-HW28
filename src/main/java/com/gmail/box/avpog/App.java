@@ -1,12 +1,13 @@
 package com.gmail.box.avpog;
 
+import com.gmail.box.avpog.Utils.Exceptions.IsFullException;
 import com.gmail.box.avpog.Utils.Stack;
 
 import java.util.Arrays;
 
 public class App
 {
-    public static void main( String[] args ) {
+    public static void main( String[] args ) throws IsFullException {
 
         Stack stack = new Stack(5);
 
